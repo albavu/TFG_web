@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block content %}
+
+<body>
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="ml-4">
+                        Introducir secuencia
+                    </h1>
+                    <hr width=1000>
+                    <div class="col-lg-10 mx-auto">
+                        <p class="lead mb-3"> El archivo tiene que tener un formato .csv en el que cada fila sea una secuencia de 150 nucleótidos. </p>
+                    </div>
+                    <form action="/subir" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Example file input</label>
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                        <button type="submit" class="btn btn-danger m-4">Predecir</button>
+                    </form>
+                    <hr> {% if prediccion != None %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Predicción</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table bg-light" id="tabla" style="font-size: 15px;">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col"> # </th>
+                                        <th scope="col">No nucleosoma</th>
+                                        <th scope="col">Nucleosoma</th>
+                                    </tr>
+                                </thead>
+                                <!-- CUERPO DE LA TABLA -->
+                                <tbody id="MyTable">
+                                    {% set count = namespace(value=1) %} {% for item in prediccion %}{%if item['0'] >0.5%}
+                                    <tr class='table-danger' class="{{ item.code }} row_to_order" style="color:black;">
+                                        <td>{{ count.value }}</td>
+                                        <td>{{ item['0'] }}</td>
+                                        <td>{{ item['1'] }}</td>
+                                    </tr>
+                                    {%else%}
+                                    <tr class='table-success' class="{{ item.code }} row_to_order" style="color:black;">
+                                        <td>{{ count.value }}</td>
+                                        <td>{{ item['0'] }}</td>
+                                        <td>{{ item['1'] }}</td>
+                                    </tr>
+                                    {%endif%} {% set count.value = count.value + 1 %} {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

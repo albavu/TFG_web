@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block content %}
+
+<body>
+    <div class="px-4 py-5 my-5 text-center">
+        <h4 class="display-4 fw-bold">Desarrollo de una solución mediante Deep Learning para la predicción de secuencias nucleosomales de DNA</h4>
+        <div class="col-lg-10 mx-auto">
+            <p class="lead mb-4">Esta página web presenta el trabajo de fin de grado del grado de Ingeniería Informática realizado por Alba Vallejo Urruchi durante el curso 2020/2021.</p>
+            <p>Los elementos principales de la cromatina son los nucleosomas, complejos proteicos sobre los que se enrolla la doble cadena de DNA. Ya se habían identificado patrones de secuencia promedio que contribuyen al posicionamiento de los nucleosomas
+                pero no se ha había desarrollado un método que permitiera el análisis individual de cadenas de nucleótidos para predecir qué secuencias se asoociarán a un nucleosoma o no. Por ello, se ha desarrollado una posible solución con Inteligencia
+                artificial a través de un clasificador de secuencias de nucleótidos.</p>
+            <p>En la imagen siguiente se presentan todos los modelos que se han probado con su accuracy correspondiente. Se observa que el mejor modelo ha sido una arquitectura de Deep Learning con un accuracy del 82,85%.
+            </p>
+            <div class="text-center">
+                <img src="../static/images/resultados.png" class="img-fluid" alt="..." width="100%" height="100%">
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+    <footer class=" text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Alba Vallejo Urruchi &copy; TFG 2020/2021 Universidad de Salamanca</p>
+        </div>
+    </footer>
+</body>
+{% endblock %}
